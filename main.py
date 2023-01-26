@@ -17,7 +17,7 @@ def display_text():
     global entry
     color = entry.get()
 
-    # printing the converted text
+    # printing the hex color
     print("Hex Color: " + color)
 
     # displays confirmation of copied text
@@ -25,17 +25,24 @@ def display_text():
 
     # in case a user forgets to insert the #
     if color[0] != "#":
+        # code below converts from hex to rgb
         rgbColor = ImageColor.getrgb("#" + color)
+
+        # will display the converted color
         label.configure(text=rgbColor)
 
         # copying to clipboard
         pyperclip.copy(str(rgbColor))
 
     elif len(color) > 7:
+        # in case a entered color exceeds the maximum color length
         label.configure(text="Please Insert a valid Hex color.")
     # default condition
     else:
+        # code below converts from hex to rgb
         rgbColor = ImageColor.getrgb(color)
+
+        # will display the converted color
         label.configure(text=rgbColor)
 
         # copying to clipboard
